@@ -14,9 +14,9 @@ fs.readFile('./instructions.txt', 'utf8', (err, data) => {
         switch(splitted_line[0]) {
             case "PLACE": {
               console.log("Executing PLACE");
-              var x_coordinate = Number(splitted_line[1]); // read from line
-              var y_coordinate = Number(splitted_line[2]); // read from line
-              var facing = splitted_line[3]; // read from line
+              var x_coordinate = Number(splitted_line[1]);
+              var y_coordinate = Number(splitted_line[2]);
+              var facing = splitted_line[3];
               robot.place(x_coordinate, y_coordinate, facing);
               break;
             }
