@@ -36,6 +36,10 @@ class Robot {
     }
 
     place(positionX: number, positionY: number, facing: string) {
+        if (!Robot.isValidPosition(positionX, positionY)) {
+            console.log("Invalid position");
+            return;
+        }
         this.positionX = positionX;
         this.positionY = positionY;
         this.facing = facing;
