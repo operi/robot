@@ -20,7 +20,7 @@ class Robot {
     initialized: boolean;
 
     public static isValidPosition(positionX: number, positionY: number) {
-        return (positionX >= 1 && positionX <= 5 && positionY <= 1 && positionY >= 5);
+        return (positionX >= 1 && positionX <= 5 && positionY >= 1 && positionY <= 5);
     }
 
     getPositionX() {
