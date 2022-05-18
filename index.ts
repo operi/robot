@@ -5,7 +5,7 @@ import { Robot, ACTION, FACING } from './robot'
 const robot = new Robot();
 
 
-function runPlace(splitted_line: string) {
+function runPlace(splitted_line: string): void{
   console.log("Executing PLACE");
   var positionX = Number(splitted_line[1]);
   var positionY = Number(splitted_line[2]);
@@ -13,25 +13,25 @@ function runPlace(splitted_line: string) {
   robot.place({positionX, positionY, facing: FACING[facing]});
 }
 
-function runMove() {
+function runMove(): void {
   if (robot.isInitialized()) {
     robot.move();
   }
 }
 
-function runRight() {
+function runRight(): void {
   if (robot.isInitialized()) {
     robot.right();
   }
 }
 
-function runLeft() {
+function runLeft(): void {
   if (robot.isInitialized()) {
     robot.left();
   }
 }
 
-function runReport() {
+function runReport(): void {
   if (robot.isInitialized()) {
     robot.report();
   }

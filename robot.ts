@@ -23,11 +23,11 @@ class Robot {
         return (positionX >= 1 && positionX <= 5 && positionY >= 1 && positionY <= 5);
     }
 
-    getPositionX() {
+    getPositionX(): number {
         return this.positionX;
     }
 
-    getPositionY() {
+    getPositionY(): number {
         return this.positionY;
     }
 
