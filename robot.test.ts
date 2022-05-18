@@ -26,34 +26,17 @@ describe('Position Validation tests', () => {
         expect(r.getPositionX()).toBe(expected_x);
         expect(r.getPositionY()).toBe(expected_y);
     });
-});
-
-test('assert robot can not cross North limit', () => {
-    r.place(5, 5, FACING.NORTH);
-    r.move();
-    expect(r.getPositionX()).toBe(5);
-    expect(r.getPositionY()).toBe(5);
-});
-
-test('assert robot can not cross East limit', () => {
-    r.place(5, 5, FACING.EAST);
-    r.move();
-    expect(r.getPositionX()).toBe(5);
-    expect(r.getPositionY()).toBe(5);
-});
-
-test('assert robot can not cross South limit', () => {
-    r.place(5, 1, FACING.SOUTH);
-    r.move();
-    expect(r.getPositionX()).toBe(5);
-    expect(r.getPositionY()).toBe(1);
-});
-
-test('assert robot can not cross West limit', () => {
-    r.place(1, 5, FACING.WEST);
-    r.move();
-    expect(r.getPositionX()).toBe(1);
-    expect(r.getPositionY()).toBe(5);
+    it.each([
+        [5, 5, FACING.NORTH],
+        [5, 5, FACING.EAST],
+        [5, 1, FACING.SOUTH],
+        [1, 5, FACING.WEST]
+    ])('assert robot from position (%p, %p) can not cross %p limit', (x_position: number, y_position: number, facing: FACING) => {
+        r.place(x_position, y_position, facing);
+        r.move();
+        expect(r.getPositionX()).toBe(x_position);
+        expect(r.getPositionY()).toBe(y_position);
+    });
 });
 
 describe('Rotating tests', () => {
