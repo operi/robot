@@ -31,6 +31,10 @@ class Robot {
         return this.positionY;
     }
 
+    getFacing() {
+        return this.facing;
+    }
+
     place(positionX: number, positionY: number, facing: string) {
         this.positionX = positionX;
         this.positionY = positionY;
