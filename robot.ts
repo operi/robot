@@ -55,7 +55,7 @@ class Robot {
         return this.initialized;
     }
 
-    logInvalidMovement(positionX: number, positionY: number): void {
+    private logInvalidMovement(positionX: number, positionY: number): void {
         console.log("Invalid movement. Can not go to (", positionX, ", ", positionY, ")");
     }
 
