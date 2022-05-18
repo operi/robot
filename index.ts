@@ -66,7 +66,8 @@ fs.readFile('./instructions.txt', 'utf8', (err, data) => {
                 runReport();
                 break;
             }
-  
+            default:
+              console.log("Action ", splitted_line[0], " not supported");
         }
         
     });
