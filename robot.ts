@@ -13,14 +13,21 @@ enum FACING {
     EAST = 'EAST'
 }
 
+const MIN_POSITION_X = 1;
+const MAX_POSITION_X = 5;
+const MIN_POSITION_Y = 1;
+const MAX_POSITION_Y = 5;
+const STEP_SIZE = 1;
+
+
 class Robot {
-    positionX: number;
-    positionY: number;
-    facing: FACING;
-    initialized: boolean;
+    private positionX: number;
+    private positionY: number;
+    private facing: FACING;
+    private initialized: boolean;
 
     public static isValidPosition(positionX: number, positionY: number) {
-        return (positionX >= 1 && positionX <= 5 && positionY >= 1 && positionY <= 5);
+        return (positionX >= MIN_POSITION_X && positionX <= MAX_POSITION_X && positionY >= MIN_POSITION_Y && positionY <= MAX_POSITION_Y);
     }
 
     getPositionX(): number {
@@ -55,7 +62,7 @@ class Robot {
     move(): void {
         switch(this.facing) {
             case FACING.NORTH: {
-                var nextPosition = this.positionY + 1;
+                var nextPosition = this.positionY + STEP_SIZE;
                 if (!Robot.isValidPosition(this.positionX, nextPosition)) {
                     this.logInvalidMovement(this.positionX, nextPosition);
                 } else {
@@ -64,7 +71,7 @@ class Robot {
                 break
             }
             case FACING.SOUTH: {
-                var nextPosition = this.positionY - 1;
+                var nextPosition = this.positionY - STEP_SIZE;
                 if (!Robot.isValidPosition(this.positionX, nextPosition)) {
                     this.logInvalidMovement(this.positionX, nextPosition);
                 } else {
@@ -73,7 +80,7 @@ class Robot {
                 break
             }
             case FACING.EAST: {
-                var nextPosition = this.positionX + 1;
+                var nextPosition = this.positionX + STEP_SIZE;
                 if (!Robot.isValidPosition(nextPosition, this.positionY)) {
                     this.logInvalidMovement(nextPosition, this.positionY);
                 } else {
@@ -82,7 +89,7 @@ class Robot {
                 break
             }
             case FACING.WEST: {
-                var nextPosition = this.positionX - 1;
+                var nextPosition = this.positionX - STEP_SIZE;
                 if (!Robot.isValidPosition(nextPosition, this.positionY)) {
                     this.logInvalidMovement(nextPosition, this.positionY);
                 } else {
