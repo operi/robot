@@ -65,15 +65,15 @@ test('assert robot can not cross East limit', () => {
 });
 
 test('assert robot can not cross South limit', () => {
-    r.place(5, 0, FACING.SOUTH);
+    r.place(5, 1, FACING.SOUTH);
     r.move();
     expect(r.getPositionX()).toBe(5);
-    expect(r.getPositionY()).toBe(0);
+    expect(r.getPositionY()).toBe(1);
 });
 
 test('assert robot can not cross West limit', () => {
-    r.place(0, 5, FACING.WEST);
+    r.place(1, 5, FACING.WEST);
     r.move();
-    expect(r.getPositionX()).toBe(0);
+    expect(r.getPositionX()).toBe(1);
     expect(r.getPositionY()).toBe(5);
 });
