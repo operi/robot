@@ -1,5 +1,3 @@
-import { assert } from "console";
-
 enum ACTION {
     PLACE = 'PLACE',
     MOVE = 'MOVE',
@@ -21,8 +19,16 @@ class Robot {
     facing: string;
     initialized: boolean;
 
-    static isValidPosition(positionX: number, positionY: number) {
+    public static isValidPosition(positionX: number, positionY: number) {
         return (positionX >= 1 && positionX <= 5 && positionY <= 1 && positionY >= 5);
+    }
+
+    getPositionX() {
+        return this.positionX;
+    }
+
+    getPositionY() {
+        return this.positionY;
     }
 
     place(positionX: number, positionY: number, facing: string) {

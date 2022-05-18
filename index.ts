@@ -16,6 +16,7 @@ function runPlace(splitted_line: string) {
 function runMove() {
   if (robot.isInitialized()) {
     robot.move();
+  }
 }
 
 function runRight() {
