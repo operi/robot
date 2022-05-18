@@ -1,5 +1,20 @@
 import { assert } from "console";
 
+enum ACTION {
+    PLACE = 'PLACE',
+    MOVE = 'MOVE',
+    RIGHT = 'RIGHT',
+    LEFT = 'LEFT',
+    REPORT = 'REPORT'
+}
+
+enum FACING {
+    NORTH = 'NORTH',
+    SOUTH = 'SOUTH',
+    WEST = 'WEST',
+    EAST = 'EAST'
+}
+
 class Robot {
     positionX: number;
     positionY: number;
@@ -23,7 +38,7 @@ class Robot {
 
     move() {
         switch(this.facing) {
-            case "NORTH": {
+            case FACING.NORTH: {
                 var next_position = this.positionY + 1;
                 if (!Robot.isValidPosition(this.positionX, next_position)) {
                     console.log("Invalid movement");
@@ -32,7 +47,7 @@ class Robot {
                 }
                 break
             }
-            case "SOUTH": {
+            case FACING.SOUTH: {
                 var next_position = this.positionY - 1;
                 if (!Robot.isValidPosition(this.positionX, next_position)) {
                     console.log("Invalid movement");
@@ -41,7 +56,7 @@ class Robot {
                 }
                 break
             }
-            case "EAST": {
+            case FACING.EAST: {
                 var next_position = this.positionX + 1;
                 if (!Robot.isValidPosition(next_position, this.positionY)) {
                     console.log("Invalid movement");
@@ -50,7 +65,7 @@ class Robot {
                 }
                 break
             }
-            case "WEST": {
+            case FACING.WEST: {
                 var next_position = this.positionX - 1;
                 if (!Robot.isValidPosition(next_position, this.positionY)) {
                     console.log("Invalid movement");
@@ -64,20 +79,20 @@ class Robot {
 
     left() {
         switch(this.facing) {
-            case "NORTH": {
-                this.facing = "WEST";
+            case FACING.NORTH: {
+                this.facing = FACING.WEST;
                 break
             }
-            case "SOUTH": {
-                this.facing = "EAST";
+            case FACING.SOUTH: {
+                this.facing = FACING.EAST;
                 break
             }
-            case "EAST": {
-                this.facing = "NORTH";
+            case FACING.EAST: {
+                this.facing = FACING.NORTH;
                 break
             }
-            case "WEST": {
-                this.facing = "SOUTH";
+            case FACING.WEST: {
+                this.facing = FACING.SOUTH;
                 break
             }
         }
@@ -85,20 +100,20 @@ class Robot {
 
     right() {
         switch(this.facing) {
-            case "NORTH": {
-                this.facing = "EAST";
+            case FACING.NORTH: {
+                this.facing = FACING.EAST;
                 break
             }
-            case "SOUTH": {
-                this.facing = "WEST";
+            case FACING.SOUTH: {
+                this.facing = FACING.WEST;
                 break
             }
-            case "EAST": {
-                this.facing = "SOUTH";
+            case FACING.EAST: {
+                this.facing = FACING.SOUTH;
                 break
             }
-            case "WEST": {
-                this.facing = "NORTH";
+            case FACING.WEST: {
+                this.facing = FACING.NORTH;
                 break
             }
         }
@@ -109,4 +124,4 @@ class Robot {
     }
 }
 
-export { Robot }
+export { Robot, ACTION, FACING }

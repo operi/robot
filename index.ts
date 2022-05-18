@@ -1,16 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-import { Robot } from './robot'
+import { Robot, ACTION } from './robot'
 const robot = new Robot();
 
-enum ACTION {
-  PLACE = 'PLACE',
-  MOVE = 'MOVE',
-  RIGHT = 'RIGHT',
-  LEFT = 'LEFT',
-  REPORT = 'REPORT'
-}
 
 function runPlace(splitted_line: string) {
   console.log("Executing PLACE");
