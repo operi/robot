@@ -1,9 +1,10 @@
 # robot
 
-- Considerations:
-    - Could have used a Strategy pattern to implement the robot's movement, but was overkill in this case.
+### Considerations:
+    - Could have used a Strategy pattern to implement the robot's movement and action parsing, but seemed overkill in this case.
+    - This is my first time setting up a NodeJS project (and have been over 2 years since last working with the technology)
 
-- Installing:
+### Installing:
     1 - Clone this repository
     2 -  Run 'npm i'
     3 - Run 'npx tsc index.ts robot.ts'
