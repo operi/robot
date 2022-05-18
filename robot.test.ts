@@ -1,5 +1,4 @@
-let robots = require('./robot')
-let Robot = robots.Robot;
+import { Robot } from './robot'
 
 test('valid position is within a y-axis limit of 0', () => {
     var r = new Robot();
