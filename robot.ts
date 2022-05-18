@@ -1,10 +1,12 @@
+import { assert } from "console";
+
 class Robot {
     positionX: number;
     positionY: number;
     facing: string;
     initialized: boolean;
 
-    isValidPosition(positionX: number, positionY: number) {
+    static isValidPosition(positionX: number, positionY: number) {
         return (positionX >= 1 && positionX <= 5 && positionY <= 1 && positionY >= 5);
     }
 
@@ -23,7 +25,7 @@ class Robot {
         switch(this.facing) {
             case "NORTH": {
                 var next_position = this.positionY + 1;
-                if (!this.isValidPosition(this.positionX, next_position)) {
+                if (!Robot.isValidPosition(this.positionX, next_position)) {
                     console.log("Invalid movement");
                 } else {
                     this.positionY = next_position;
@@ -32,7 +34,7 @@ class Robot {
             }
             case "SOUTH": {
                 var next_position = this.positionY - 1;
-                if (!this.isValidPosition(this.positionX, next_position)) {
+                if (!Robot.isValidPosition(this.positionX, next_position)) {
                     console.log("Invalid movement");
                 } else {
                     this.positionY = next_position;
@@ -41,7 +43,7 @@ class Robot {
             }
             case "EAST": {
                 var next_position = this.positionX + 1;
-                if (!this.isValidPosition(next_position, this.positionY)) {
+                if (!Robot.isValidPosition(next_position, this.positionY)) {
                     console.log("Invalid movement");
                 } else {
                     this.positionX = next_position;
@@ -50,7 +52,7 @@ class Robot {
             }
             case "WEST": {
                 var next_position = this.positionX - 1;
-                if (!this.isValidPosition(next_position, this.positionY)) {
+                if (!Robot.isValidPosition(next_position, this.positionY)) {
                     console.log("Invalid movement");
                 } else {
                     this.positionX = next_position;
