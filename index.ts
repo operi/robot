@@ -38,7 +38,7 @@ function runReport(): void {
 }
 
 
-fs.readFile('./instructions.txt', 'utf8', (err, data) => {
+fs.readFile('./commands.txt', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return;
