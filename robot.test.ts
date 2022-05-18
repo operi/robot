@@ -77,3 +77,27 @@ test('assert robot can not cross West limit', () => {
     expect(r.getPositionX()).toBe(1);
     expect(r.getPositionY()).toBe(5);
 });
+
+describe('Rotating tests', () => {
+    it.each([
+        [FACING.NORTH, FACING.WEST],
+        [FACING.SOUTH, FACING.EAST],
+        [FACING.EAST, FACING.NORTH],
+        [FACING.WEST, FACING.SOUTH]
+    ])('from %p faces %p when going left', (start_facing: FACING, ends_facing: FACING) => {
+        r.place(1, 2, start_facing);
+        r.left();
+        expect(r.getFacing()).toBe(ends_facing);
+    });
+
+    it.each([
+        [FACING.NORTH, FACING.EAST],
+        [FACING.SOUTH, FACING.WEST],
+        [FACING.EAST, FACING.SOUTH],
+        [FACING.WEST, FACING.NORTH]
+    ])('from %p faces %p when going right', (start_facing: FACING, ends_facing: FACING) => {
+        r.place(1, 2, start_facing);
+        r.right();
+        expect(r.getFacing()).toBe(ends_facing);
+    })
+});
