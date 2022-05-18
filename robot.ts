@@ -50,12 +50,16 @@ class Robot {
         return this.initialized;
     }
 
+    logInvalidMovement(x_position: number, y_position: number) {
+        console.log("Invalid movement. Can not go to (", x_position, ", ", y_position, ")");
+    }
+
     move() {
         switch(this.facing) {
             case FACING.NORTH: {
                 var next_position = this.positionY + 1;
                 if (!Robot.isValidPosition(this.positionX, next_position)) {
-                    console.log("Invalid movement");
+                    this.logInvalidMovement(this.positionX, next_position);
                 } else {
                     this.positionY = next_position;
                 }
@@ -64,7 +68,7 @@ class Robot {
             case FACING.SOUTH: {
                 var next_position = this.positionY - 1;
                 if (!Robot.isValidPosition(this.positionX, next_position)) {
-                    console.log("Invalid movement");
+                    this.logInvalidMovement(this.positionX, next_position);
                 } else {
                     this.positionY = next_position;
                 }
@@ -73,7 +77,7 @@ class Robot {
             case FACING.EAST: {
                 var next_position = this.positionX + 1;
                 if (!Robot.isValidPosition(next_position, this.positionY)) {
-                    console.log("Invalid movement");
+                    this.logInvalidMovement(next_position, this.positionY);
                 } else {
                     this.positionX = next_position;
                 }
@@ -82,7 +86,7 @@ class Robot {
             case FACING.WEST: {
                 var next_position = this.positionX - 1;
                 if (!Robot.isValidPosition(next_position, this.positionY)) {
-                    console.log("Invalid movement");
+                    this.logInvalidMovement(next_position, this.positionY);
                 } else {
                     this.positionX = next_position;
                 }
