@@ -62,3 +62,19 @@ describe('Rotating tests', () => {
         expect(r.getFacing()).toBe(ends_facing);
     })
 });
+
+test('Place, move and place again is valid', () => {
+    r.place(1, 2, FACING.NORTH);
+    r.move();
+    r.place(5, 3, FACING.SOUTH);
+    expect(r.getPositionX()).toBe(5);
+    expect(r.getPositionY()).toBe(3);
+    expect(r.getFacing()).toBe(FACING.SOUTH);
+});
+
+test('Avoid acting before a Place command', () => {
+    r.move();
+    expect(r.getPositionX()).toBeUndefined();
+    expect(r.getPositionY()).toBeUndefined();
+    expect(r.getFacing()).toBeUndefined();
+})
