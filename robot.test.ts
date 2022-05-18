@@ -49,3 +49,31 @@ test('assert robot can move West', () => {
     expect(r.getPositionX()).toBe(1);
     expect(r.getPositionY()).toBe(2);
 });
+
+test('assert robot can not cross North limit', () => {
+    r.place(5, 5, FACING.NORTH);
+    r.move();
+    expect(r.getPositionX()).toBe(5);
+    expect(r.getPositionY()).toBe(5);
+});
+
+test('assert robot can not cross East limit', () => {
+    r.place(5, 5, FACING.EAST);
+    r.move();
+    expect(r.getPositionX()).toBe(5);
+    expect(r.getPositionY()).toBe(5);
+});
+
+test('assert robot can not cross South limit', () => {
+    r.place(5, 0, FACING.SOUTH);
+    r.move();
+    expect(r.getPositionX()).toBe(5);
+    expect(r.getPositionY()).toBe(0);
+});
+
+test('assert robot can not cross West limit', () => {
+    r.place(0, 5, FACING.WEST);
+    r.move();
+    expect(r.getPositionX()).toBe(0);
+    expect(r.getPositionY()).toBe(5);
+});
