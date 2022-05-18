@@ -16,7 +16,7 @@ enum FACING {
 class Robot {
     positionX: number;
     positionY: number;
-    facing: string;
+    facing: FACING;
     initialized: boolean;
 
     public static isValidPosition(positionX: number, positionY: number) {
@@ -31,71 +31,69 @@ class Robot {
         return this.positionY;
     }
 
-    getFacing() {
+    getFacing(): FACING {
         return this.facing;
     }
 
-    place(positionX: number, positionY: number, facing: string) {
-        if (!Robot.isValidPosition(positionX, positionY)) {
+    place(data: {positionX: number, positionY: number, facing: FACING}): void {
+        if (!Robot.isValidPosition(data.positionX, data.positionY)) {
             console.log("Invalid position");
             return;
         }
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.facing = facing;
+        Object.assign(this, data);
         this.initialized = true;
     }
 
-    isInitialized() {
+    isInitialized(): boolean {
         return this.initialized;
     }
 
-    logInvalidMovement(x_position: number, y_position: number) {
-        console.log("Invalid movement. Can not go to (", x_position, ", ", y_position, ")");
+    logInvalidMovement(positionX: number, positionY: number): void {
+        console.log("Invalid movement. Can not go to (", positionX, ", ", positionY, ")");
     }
 
-    move() {
+    move(): void {
         switch(this.facing) {
             case FACING.NORTH: {
-                var next_position = this.positionY + 1;
-                if (!Robot.isValidPosition(this.positionX, next_position)) {
-                    this.logInvalidMovement(this.positionX, next_position);
+                var nextPosition = this.positionY + 1;
+                if (!Robot.isValidPosition(this.positionX, nextPosition)) {
+                    this.logInvalidMovement(this.positionX, nextPosition);
                 } else {
-                    this.positionY = next_position;
+                    this.positionY = nextPosition;
                 }
                 break
             }
             case FACING.SOUTH: {
-                var next_position = this.positionY - 1;
-                if (!Robot.isValidPosition(this.positionX, next_position)) {
-                    this.logInvalidMovement(this.positionX, next_position);
+                var nextPosition = this.positionY - 1;
+                if (!Robot.isValidPosition(this.positionX, nextPosition)) {
+                    this.logInvalidMovement(this.positionX, nextPosition);
                 } else {
-                    this.positionY = next_position;
+                    this.positionY = nextPosition;
                 }
                 break
             }
             case FACING.EAST: {
-                var next_position = this.positionX + 1;
-                if (!Robot.isValidPosition(next_position, this.positionY)) {
-                    this.logInvalidMovement(next_position, this.positionY);
+                var nextPosition = this.positionX + 1;
+                if (!Robot.isValidPosition(nextPosition, this.positionY)) {
+                    this.logInvalidMovement(nextPosition, this.positionY);
                 } else {
-                    this.positionX = next_position;
+                    this.positionX = nextPosition;
                 }
                 break
             }
             case FACING.WEST: {
-                var next_position = this.positionX - 1;
-                if (!Robot.isValidPosition(next_position, this.positionY)) {
-                    this.logInvalidMovement(next_position, this.positionY);
+                var nextPosition = this.positionX - 1;
+                if (!Robot.isValidPosition(nextPosition, this.positionY)) {
+                    this.logInvalidMovement(nextPosition, this.positionY);
                 } else {
-                    this.positionX = next_position;
+                    this.positionX = nextPosition;
                 }
                 break
             }
         }
     }
 
-    left() {
+    left(): void {
         switch(this.facing) {
             case FACING.NORTH: {
                 this.facing = FACING.WEST;
@@ -116,7 +114,7 @@ class Robot {
         }
     }
 
-    right() {
+    right(): void {
         switch(this.facing) {
             case FACING.NORTH: {
                 this.facing = FACING.EAST;
@@ -137,7 +135,7 @@ class Robot {
         }
     }
 
-    report() {
+    report(): void {
         console.log("I'm placed at Position X: ", this.positionX, ", Position Y: ", this.positionY, " , and facing ", this.facing);
     }
 }

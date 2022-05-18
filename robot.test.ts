@@ -12,30 +12,30 @@ describe('Position Validation tests', () => {
         [1, 6, false],
         [-1, 3, false],
         [7, 2, false]
-    ])('Is Position (%p , %p) valid', (x_position: number, y_position: number, expected_value: boolean) => {
-        expect(Robot.isValidPosition(x_position, y_position)).toBe(expected_value);
+    ])('Is Position (%p , %p) valid', (positionX: number, positionY: number, expectedValue: boolean) => {
+        expect(Robot.isValidPosition(positionX, positionY)).toBe(expectedValue);
     });
     it.each([
         [1, 1, FACING.NORTH, 1, 2],
         [1, 1, FACING.EAST, 2, 1],
         [2, 2, FACING.SOUTH, 2, 1],
         [2, 2, FACING.WEST, 1, 2]
-    ])('assert robot from position (%p, %p) can move %p', (x_position: number, y_position: number, facing: FACING, expected_x: number, expected_y: number) => {
-        r.place(x_position, y_position, facing);
+    ])('assert robot from position (%p, %p) can move %p', (positionX: number, positionY: number, facing: FACING, expectedX: number, expectedY: number) => {
+        r.place({positionX, positionY, facing});
         r.move();
-        expect(r.getPositionX()).toBe(expected_x);
-        expect(r.getPositionY()).toBe(expected_y);
+        expect(r.getPositionX()).toBe(expectedX);
+        expect(r.getPositionY()).toBe(expectedY);
     });
     it.each([
         [5, 5, FACING.NORTH],
         [5, 5, FACING.EAST],
         [5, 1, FACING.SOUTH],
         [1, 5, FACING.WEST]
-    ])('assert robot from position (%p, %p) can not cross %p limit', (x_position: number, y_position: number, facing: FACING) => {
-        r.place(x_position, y_position, facing);
+    ])('assert robot from position (%p, %p) can not cross %p limit', (positionX: number, positionY: number, facing: FACING) => {
+        r.place({positionX, positionY, facing});
         r.move();
-        expect(r.getPositionX()).toBe(x_position);
-        expect(r.getPositionY()).toBe(y_position);
+        expect(r.getPositionX()).toBe(positionX);
+        expect(r.getPositionY()).toBe(positionY);
     });
 });
 
@@ -45,10 +45,10 @@ describe('Rotating tests', () => {
         [FACING.SOUTH, FACING.EAST],
         [FACING.EAST, FACING.NORTH],
         [FACING.WEST, FACING.SOUTH]
-    ])('from %p faces %p when going left', (start_facing: FACING, ends_facing: FACING) => {
-        r.place(1, 2, start_facing);
+    ])('from %p faces %p when going left', (startFacing: FACING, endsFacing: FACING) => {
+        r.place({positionX: 1, positionY: 2, facing: startFacing});
         r.left();
-        expect(r.getFacing()).toBe(ends_facing);
+        expect(r.getFacing()).toBe(endsFacing);
     });
 
     it.each([
@@ -56,17 +56,17 @@ describe('Rotating tests', () => {
         [FACING.SOUTH, FACING.WEST],
         [FACING.EAST, FACING.SOUTH],
         [FACING.WEST, FACING.NORTH]
-    ])('from %p faces %p when going right', (start_facing: FACING, ends_facing: FACING) => {
-        r.place(1, 2, start_facing);
+    ])('from %p faces %p when going right', (startFacing: FACING, endsFacing: FACING) => {
+        r.place({positionX: 1, positionY: 2, facing: startFacing});
         r.right();
-        expect(r.getFacing()).toBe(ends_facing);
+        expect(r.getFacing()).toBe(endsFacing);
     })
 });
 
 test('Place, move and place again is valid', () => {
-    r.place(1, 2, FACING.NORTH);
+    r.place({positionX: 1, positionY: 2, facing: FACING.NORTH});
     r.move();
-    r.place(5, 3, FACING.SOUTH);
+    r.place({positionX: 5, positionY: 3, facing: FACING.SOUTH});
     expect(r.getPositionX()).toBe(5);
     expect(r.getPositionY()).toBe(3);
     expect(r.getFacing()).toBe(FACING.SOUTH);

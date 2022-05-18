@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-import { Robot, ACTION } from './robot'
+import { Robot, ACTION, FACING } from './robot'
 const robot = new Robot();
 
 
 function runPlace(splitted_line: string) {
   console.log("Executing PLACE");
-  var x_coordinate = Number(splitted_line[1]);
-  var y_coordinate = Number(splitted_line[2]);
+  var positionX = Number(splitted_line[1]);
+  var positionY = Number(splitted_line[2]);
   var facing = splitted_line[3];
-  robot.place(x_coordinate, y_coordinate, facing);
+  robot.place({positionX, positionY, facing: FACING[facing]});
 }
 
 function runMove() {
