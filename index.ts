@@ -12,6 +12,38 @@ enum ACTION {
   REPORT = 'REPORT'
 }
 
+function runPlace(splitted_line: string) {
+  console.log("Executing PLACE");
+  var x_coordinate = Number(splitted_line[1]);
+  var y_coordinate = Number(splitted_line[2]);
+  var facing = splitted_line[3];
+  robot.place(x_coordinate, y_coordinate, facing);
+}
+
+function runMove() {
+  if (robot.isInitialized()) {
+    robot.move();
+}
+
+function runRight() {
+  if (robot.isInitialized()) {
+    robot.right();
+  }
+}
+
+function runLeft() {
+  if (robot.isInitialized()) {
+    robot.left();
+  }
+}
+
+function runReport() {
+  if (robot.isInitialized()) {
+    robot.report();
+  }
+}
+
+
 fs.readFile('./instructions.txt', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
@@ -21,39 +53,23 @@ fs.readFile('./instructions.txt', 'utf8', (err, data) => {
         var splitted_line = line.split(" ");
         switch(splitted_line[0]) {
             case ACTION.PLACE: {
-              console.log("Executing PLACE");
-              var x_coordinate = Number(splitted_line[1]);
-              var y_coordinate = Number(splitted_line[2]);
-              var facing = splitted_line[3];
-              robot.place(x_coordinate, y_coordinate, facing);
+              runPlace(splitted_line);
               break;
             }
             case ACTION.MOVE: {
-                if (robot.isInitialized()) {
-                    console.log("Executing MOVE");
-                    robot.move();
-                }
+                runMove();
                 break;
             }
             case ACTION.RIGHT: {
-              if (robot.isInitialized()) {
-                console.log("Executing RIGHT");
-                robot.right();
-              }
+              runRight();
               break;
             }
             case ACTION.LEFT: {
-                if (robot.isInitialized()) {
-                    console.log("Executing LEFT");
-                    robot.left();
-                }
+                runLeft();
                 break;
             }
             case ACTION.REPORT: {
-                if (robot.isInitialized()) {
-                    console.log("Executing REPORT");
-                    robot.report();
-                }
+                runReport();
                 break;
             }
   
