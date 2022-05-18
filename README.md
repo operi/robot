@@ -1,8 +1,10 @@
 # robot
 
 ### Considerations:
-    - Could have used a Strategy pattern to implement the robot's movement and action parsing, but seemed overkill in this case.
-    - This is my first time setting up a NodeJS project, and have virtually no previous experience with the framework/tooling around it.
+    - Could have used a Strategy pattern to implement the robot's movement and
+      action parsing, but seemed overkill in this case.
+    - This is my first time setting up a NodeJS project, and have virtually no
+      previous experience with the framework/tooling around it.
 
 ### Installing:
     1 - Clone this repository
